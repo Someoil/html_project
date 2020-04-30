@@ -1,0 +1,91 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+
+  .burger {
+    display: none;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .header {
+    .burger {
+      display: block;
+      z-index: 5;
+      padding: 10px;
+      margin-right: -10px;
+      cursor: pointer;
+
+      .burger__line {
+        width: 18px;
+        height: 2px;
+        background-color: #2C4053;
+        border-radius: 2px;
+        // margin-bottom: 1px;
+        // transition: background 0s 0.6s;
+        transition: width 0.3s 0.6s, background 0.3s 0.3s, transform 0.3s 0s;
+
+        &::after,
+        &::before {
+          content: '';
+          display: block;
+          background: #2C4053;
+          width: 18px;
+          height: 2px;
+          position: relative;
+        }
+
+        &::before {
+          transition: width 0.3s 0.6s, bottom 0.3s 0.3s, transform 0.3s 0s;
+          bottom: 5px;
+        }
+
+        &::after {
+          transition: width 0.3s 0.6s, top 0.3s 0.3s, transform 0.3s 0s;
+          top: 3px;
+          width: 10px;
+        }
+      }
+
+      &.active {
+        .burger__line {
+          background-color: transparent;
+          transition: width 0.3s 0s, background 0.3s 0.3s, transform 0.3s 0.6s;
+
+          &::before {
+            bottom: 0;
+            transform: rotate(45deg);
+            transition: width 0.3s 0s, bottom 0.3s 0.3s, transform 0.3s 0.6s;
+          }
+
+          &::after {
+            top: -2px;
+            transform: rotate(-45deg);
+            transition: width 0.3s 0s, top 0.3s 0.3s, transform 0.3s 0.6s;
+            width: 18px;
+          }
+        }
+      }
+    }
+
+    .headerNav {
+      position: fixed;
+      right: -50%;
+      top: 64px;
+      background-color: #fff;
+      width: 45%;
+      padding-top: 0;
+      height: 100%;
+      transition: 0.5s;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      &.active {
+        right: 0;
+      }
+    }
+  }
+}

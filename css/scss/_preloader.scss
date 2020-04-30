@@ -1,0 +1,71 @@
+$spinkit-size: 4em !default;
+
+.preloader {
+  display: none;
+}
+
+.preloader.hidden {
+  opacity: 0;
+}
+
+body.preload {
+  width: 100%;
+  height: 100vh;
+  // overflow: hidden;
+  .preloader {
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s opacity;
+  }
+
+  .preloader__dots {
+    $animationDuration: 2.0s;
+    width: $spinkit-size;
+    height: $spinkit-size;
+    position: relative;
+    // margin: auto;
+    text-align: center;
+    animation: preloader__dots-rotate $animationDuration infinite linear;
+
+    .preloader__dot {
+      width: ($spinkit-size / 2);
+      height: ($spinkit-size / 2);
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      background-color: #77b728;
+      border-radius: 100%;
+      animation: preloader__dots-bounce $animationDuration infinite ease-in-out;
+    }
+
+    .preloader__dot_2 {
+      background-color: #2288e8;
+      top: auto;
+      bottom: 0;
+      animation-delay: (-$animationDuration / 2);
+    }
+  }
+  @keyframes preloader__dots-rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes preloader__dots-bounce {
+    0%,
+    100% {
+      transform: scale(0);
+    }
+
+    50% {
+      transform: scale(1.0);
+    }
+  }
+}
